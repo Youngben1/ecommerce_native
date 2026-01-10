@@ -1,4 +1,4 @@
-import cloudinary from "../config/cloudinary.config.js";
+import {cloudinary} from "../config/cloudinary.js";
 import { Product } from "../models/product.model.js";
 import { Order } from "../models/order.model.js";
 import { User } from "../models/user.model.js";
