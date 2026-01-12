@@ -31,7 +31,7 @@ export async function createOrder (req,res) {
             totalPrice,
         });
 
-        for(const Item of orderItems) {
+        for(const item of orderItems) {
             await Product.findByIdAndUpdate(item.product._id,{
                 $inc: {stock: -item.quantity}
             });
@@ -46,7 +46,7 @@ export async function createOrder (req,res) {
 
 export async function getUserOrders(req, res) {
     try {
-        const orders = (await Order.find(clerkId: req.order.clerkId).populate("orderItems,product")).sort({createdAt: -1});
+        const orders = (await Order.find({clerkId: req.order.clerkId}).populate("orderItems,product")).sort({createdAt: -1});
 
         const orderIds = orders.map((order) => order._id);
         const reviews = await Review.find({ orderId: { $in: orderIds } });
