@@ -1,20 +1,25 @@
 import axiosInstance from "./axios";
 
 export const productApi = {
-    getAll: async () => {
-        const {data} = await axiosInstance.get('/admin/products');
-        return data;
-    },
+  getAll: async () => {
+    const { data } = await axiosInstance.get("/admin/products");
+    return data;
+  },
 
-    create: async(formData) => {
-        const {data} = await axiosInstance.post('/admin/products', formData);
-        return data;
-    },
+  create: async (formData) => {
+    const { data } = await axiosInstance.post("/admin/products", formData);
+    return data;
+  },
 
-    update: async({id, formData}) => {
-        const {data} = await axiosInstance.put(`/admin/products/${id}`, formData);
-        return data;
-    }
+  update: async ({ id, formData }) => {
+    const { data } = await axiosInstance.put(`/admin/products/${id}`, formData);
+    return data;
+  },
+
+  delete: async (productId) => {
+    const { data } = await axiosInstance.delete(`/admin/products/${productId}`);
+    return data;
+  },
 };
 
 export const orderApi = {
