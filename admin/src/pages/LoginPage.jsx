@@ -3,8 +3,7 @@ import { SignIn } from '@clerk/clerk-react'
 
 function LoginPage() {
   return (
-    <div>
-        LogInPage
+    <div className='hero h-screen'>
         <SignIn />
     </div>
   )

@@ -88,7 +88,7 @@ function OrdersPage() {
                         </td>
 
                         <td>
-                          <select value={order.status} className="select select-sm" disabled={updateStatusMutation.isPending} onChange={(e) => handleStatusChange(order_id, e.target.value)} >
+                          <select value={order.status} className="select select-sm" disabled={updateStatusMutation.isPending} onChange={(e) => handleStatusChange(order._id, e.target.value)} >
                             <option value="pending">Pending</option>
                             <option value="shipped">Shipped</option>
                             <option value="delivered">Delivered</option>
