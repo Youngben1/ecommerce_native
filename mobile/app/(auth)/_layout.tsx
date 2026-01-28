@@ -1,17 +1,12 @@
-import { View, Text } from 'react-native';
-import {useAuth} from "@clerk/clerk-expo";
-import { Redirect, Stack } from 'expo-router';
+import {Redirect, Stack} from "expo-router";
+import {useAuth}from "@clerk/clerk-expo";
 
-const AuthRoutesLayout = () => {
+export default function AuthRoutesLayout() {
     const {isSignedIn} = useAuth();
 
-    if (isSignedIn) {
-        return <Redirect href={'/'} />
+    if(isSignedIn) {
+        return <Redirect href={"/"} />
     }
 
-  return (
-    <Stack screenOptions={{headerShown: false}}/>
-  )
+    return <Stack screenOptions={{headerShown: false}} />
 }
-
-export default AuthRoutesLayout
