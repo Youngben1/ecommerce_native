@@ -1,7 +1,8 @@
 import ProductsGrid from '@/components/ProductsGrid';
 import SafeScreen from '@/components/SafeScreen';
+import useProducts from '@/hooks/useProducts';
 import { Ionicons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const CATEGORIES = [
@@ -15,6 +16,23 @@ const CATEGORIES = [
 const ShopScreen = () => {
   const [searchQuery, setSearchQuery] =useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const { data:products, isLoading, isError } = useProducts();
+
+  const filteredProducts = useMemo(() => {
+    if(!products) return [];
+
+    let filtered = products;
+
+    if(selectedCategory !== "All"){
+      filtered =  filtered.filter((product) => product.category === selectedCategory);
+    }
+
+    if(searchQuery.trim()) {
+      filtered = filtered.filter((product) => product.category.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+
+  },[products, selectedCategory, searchQuery ]);
 
   return (
     <SafeScreen>
@@ -61,11 +79,11 @@ const ShopScreen = () => {
           <View className='px-6 mb-6'>
               <View className='flex-row items-center justify-between mb-4'>
                 <Text className='text-text-primary text-lg font-bold'>Products</Text>
-                <Text className='text-text-secondary text-sm'>10 items</Text>
+                <Text className='text-text-secondary text-sm'>{filteredProducts.length} items</Text>
               </View>
 
               {/* PRODUCTS GRID */}
-              <ProductsGrid />
+              <ProductsGrid products={filteredProducts} isLoading={isLoading} isError={isError} />
           </View>
       </ScrollView>
     </SafeScreen>

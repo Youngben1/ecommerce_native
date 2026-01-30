@@ -1,7 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Product } from '@/types';
+import { View, Text } from 'react-native';
 
-const ProductsGrid = () => {
+interface ProductsGridProps {
+    isLoading: boolean,
+    isError: boolean,
+    products: Product[]
+}
+
+const ProductsGrid = ({products, isLoading, isError}: ProductsGridProps) => {
+    const handleAddToCart = () => {};
+
+
   return (
     <View>
       <Text>ProductsGrid</Text>
