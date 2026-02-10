@@ -3,7 +3,7 @@ import SafeScreen from '@/components/SafeScreen';
 import useProducts from '@/hooks/useProducts';
 import { Ionicons } from '@expo/vector-icons';
 import { useMemo, useState } from 'react';
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const CATEGORIES = [
   { name: "All", icon: "grid-outline" as const },
