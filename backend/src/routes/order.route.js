@@ -6,9 +6,9 @@ const router = Router();
 
 router.use(protectRoute);
 
-router.post('/', createOrder);
+router.post('/', protectRoute, createOrder);
 
-router.get('/', getUserOrders);
+router.get('/', protectRoute, getUserOrders);
 
 
 

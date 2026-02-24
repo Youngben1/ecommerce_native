@@ -4,7 +4,7 @@ import { createReview, deleteReview } from '../controllers/review.controller.js'
 
 const router = Router();
 
-router.get('/', protectRoute, createReview);
+router.post('/', protectRoute, createReview);
 router.delete('/:reviewId', protectRoute, deleteReview);
 
 

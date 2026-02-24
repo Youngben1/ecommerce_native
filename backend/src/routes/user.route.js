@@ -6,7 +6,7 @@ const router = Router();
 router.use(protectRoute);
 
 router.post("/addresses", addAddress);
-router.post("/addresses", getAddresses);
+router.get("/addresses", getAddresses);
 router.put("/addresses/:addressId", updateAddress);
 router.delete("/addresses/:addressId", deleteAddress);
 

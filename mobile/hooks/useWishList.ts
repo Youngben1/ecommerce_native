@@ -7,24 +7,26 @@ const useWishlist = () => {
   const queryClient = useQueryClient();
 
   const {
-    data: wishlist,
-    isLoading,
-    isError,
+  data: wishlist,
+  isLoading,
+  isError,
   } = useQuery({
-    queryKey: ["wishlist"],
-    queryFn: async () => {
+  queryKey: ["wishlist"],
+  queryFn: async () => {
       const { data } = await api.get<{ wishlist: Product[] }>("/users/wishlist");
-      return data.wishlist;
+      return data.wishlist || []; // Return empty array if undefined
     },
-  });
+});
 
   const addToWishlistMutation = useMutation({
-    mutationFn: async (productId: string) => {
-      const { data } = await api.post<{ wishlist: string[] }>("/users/wishlist", { productId });
-      return data.wishlist;
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["wishlist"] }),
-  });
+  mutationFn: async (productId: string) => {
+    const { data } = await api.post<{ wishlist: string[] }>("/users/wishlist", { productId });
+    return data.wishlist;
+  },
+  onSuccess: (data) => {
+    queryClient.invalidateQueries({ queryKey: ["wishlist"] });
+  },
+});
 
   const removeFromWishlistMutation = useMutation({
     mutationFn: async (productId: string) => {

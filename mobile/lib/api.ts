@@ -2,7 +2,7 @@ import axios from "axios";
 import { useAuth } from "@clerk/clerk-expo";
 import { useEffect } from "react";
 
-const API_URL = "http://10.41.142.1:3000/api";
+const API_URL = "http://172.21.225.1:3000/api";
 
 const api = axios.create({
     baseURL: API_URL,
@@ -31,3 +31,5 @@ export const useApi = () => {
     
     return api;
 }
+
+// laptop ip : 172.21.225.1 and legit one is const API_URL = "http://10.41.142.1:3000/api";

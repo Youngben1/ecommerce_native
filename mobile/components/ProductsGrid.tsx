@@ -41,7 +41,7 @@ const ProductsGrid = ({products, isLoading, isError}: ProductsGridProps) => {
         <TouchableOpacity className="bg-surface rounded-3xl overflow-hidden mb-3"
             style={{ width: "48%" }}
             activeOpacity={0.8}
-            // onPress={() => router.push(`/product/${product._id}`)}
+            onPress={() => router.push(`/product/${product._id}`)}
         >
             <View className='relative'>
                 <Image source={{uri: product.images[0]}} resizeMode='cover' className='w-full h-44 bg-background-lighter' />
